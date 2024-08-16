@@ -1,0 +1,28 @@
+mat-slider {
+  width: 300px;
+}
+
+
+.description-slider-container {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 10%; Space between each row */
+  margin-left: 30%;
+}
+
+.description-text {
+  flex-shrink: 0;
+  width: 50%;
+  /* Fixed width for description text */
+  text-align: right;
+  /* Align text to the right */
+}
+
+.aligned-slider {
+  flex-grow: 1;
+  /* Make the slider take up the remaining space */
+}
+
+.graph {
+  margin-right: 7%;
+}

@@ -1,0 +1,10 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let name of names">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-assessments [id]="studentId" ></app-assessments>
+  </mat-expansion-panel>
+</mat-accordion>
