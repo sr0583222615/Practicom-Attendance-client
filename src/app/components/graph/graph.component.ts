@@ -21,7 +21,6 @@ export class GraphComponent implements OnInit {
   isOk: boolean = false;
   isOk2: boolean = false;
 
-
   showGraph() {
     debugger
     const documentStyle = getComputedStyle(document.documentElement);

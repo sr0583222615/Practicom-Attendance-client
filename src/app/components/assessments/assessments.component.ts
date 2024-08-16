@@ -58,7 +58,7 @@ export class AssessmentsComponent implements OnInit {
       return `${value}`;
     };
   }
-  sent() {
+  send() {
     debugger;
     this.assessmentsList = [];
     for (let i = 0; i < this.sliderValues.length; i++) {
