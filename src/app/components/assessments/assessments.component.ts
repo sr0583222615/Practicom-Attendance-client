@@ -12,6 +12,7 @@ import { GraphComponent } from '../graph/graph.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { lastValueFrom } from 'rxjs';
 
 
 @Component({
@@ -23,7 +24,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class AssessmentsComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  showGraph: boolean = false;
   readonly panelOpenState = signal(false);
   #assesmentService = inject(AssesmentsService);
   #router = inject(Router);
@@ -32,6 +32,8 @@ export class AssessmentsComponent implements OnInit {
   projects: object[] = [];
   descriptions: string[] = [];
   months: Date[] = [];
+  monthsOld: Date[] = [];
+  valuesOld: string[] = [];
   values: string[] = [];
   sliderValues: number[] = []; // מערך לשמירת הערכים של כל ה-sliders
   assessmentsList: Assessment[] = []
@@ -72,29 +74,27 @@ export class AssessmentsComponent implements OnInit {
       alert(x.message.result)
     });
   }
-  getGraph(month: Date[], values: string[],assessmentType: number) {
-    debugger 
-    this.#assesmentService.getAssessmentTypeByStudent(assessmentType + 1, this.id).subscribe((x: any) => {
-      console.log( x.message.result)
-      this.AssessmentTypeByStudentList = x.message.result;
+  async getGraph(month: Date[], values: string[], assessmentType: number) {
+    try {
+      const response: any = await lastValueFrom(this.#assesmentService.getAssessmentTypeByStudent(assessmentType + 1, this.id));
+      this.AssessmentTypeByStudentList = response.message.result;
       this.months = this.AssessmentTypeByStudentList.map(item => item.date);
       this.values = this.AssessmentTypeByStudentList.map(item => item.value);
-      console.log(this.months )
-      console.log(this.values)
-     
-    })
-    this.showGraph = true; // הגדרת מצב כדי להציג את הקומפוננטה
-    this.openDialog(this.months,this.values,assessmentType)
+    }
+    catch (error) {
+      console.error('Error fetching assessment data', error);
+    }
+    this.openDialog(this.months, this.values, assessmentType);
   }
 
 
-  openDialog(month: Date[], values: string[],i:number): void {
+  openDialog(month: Date[], values: string[], i: number): void {
     debugger
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.descriptions[i],
-      month:month,
-      values:values
+      month: month,
+      values: values
     };
     // dialogConfig.width = '800px';
     // dialogConfig.height = '800px';
