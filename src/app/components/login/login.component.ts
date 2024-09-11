@@ -38,7 +38,6 @@ export class LoginComponent implements ErrorStateMatcher {
       this.#guideService.login(passInt).pipe(
         catchError((error) => {
           if (error.status === 400) {
-            // this.router.navigate(['./register/', {relativeTo: this.activatedRoute}]);
             this.#router.navigateByUrl('');
           }
           return throwError(error);
@@ -49,7 +48,6 @@ export class LoginComponent implements ErrorStateMatcher {
           alert("משתמש לא רשום")
           this.#router.navigateByUrl('');
         } else if (x.message == "משתמש רשום") {
-          //this.#router.navigateByUrl('student');
           this.#router.navigate(['project', { guideId: passInt }] );
         }
       });

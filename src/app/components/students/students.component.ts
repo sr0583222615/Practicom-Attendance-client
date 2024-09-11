@@ -32,16 +32,12 @@ export class StudentsComponent implements OnInit {
       const a = parseInt(guideId);
       if (!isNaN(a)) {
         this.#studentsService.getAllStudents(guideId).subscribe((response: any) => {
-          debugger;
-          console.log(response);
           if (response.message.result) {
             this.names = response.message.result.map((student: any) => {
               this.studentId=student.id;
-              console.log(this.studentId +"this.studentId")
               return `${student.firstName.trim()} ${student.lastName.trim()}`;
             });
           }
-          console.log(this.names);
         });
       }
     });

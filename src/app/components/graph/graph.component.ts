@@ -27,8 +27,6 @@ export class GraphComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-    console.log(this.month + "month in graph to see the first value");
-    console.log(this.values);
     this.data = {
       labels: this.month,
       datasets: [
@@ -39,13 +37,6 @@ export class GraphComponent implements OnInit {
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           tension: 0.4
         },
-        // {
-        //   label: 'Second Dataset',
-        //   data: [28, 48, 40, 19, 86, 27, 90],
-        //   fill: false,
-        //   borderColor: documentStyle.getPropertyValue('--pink-500'),
-        //   tension: 0.4
-        // }
       ]
     };
 
@@ -82,7 +73,5 @@ export class GraphComponent implements OnInit {
     };
     this.isOk = true
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('OnChanges:', changes);
-  }
+
 }

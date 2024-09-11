@@ -29,13 +29,11 @@ export class ProjectsComponent {
       if (!isNaN(a)) {
         this.#projectsService.getAllProjects(guideId).subscribe((response:any) => {
           debugger
-          console.log(response);
           if (response.message.result) {
             this.projectsNames = response.message.result.map((student:any) => {
               return `${student.description.trim()}`;
             });
           }
-          console.log(this.projectsNames); 
         });
       }
     });

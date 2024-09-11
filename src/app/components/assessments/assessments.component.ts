@@ -6,7 +6,6 @@ import { AssesmentsService } from '../../services/assesments.service';
 import { MatSliderModule } from '@angular/material/slider';
 import { Assessment } from '../../models/assessment.model';
 import { FormsModule } from '@angular/forms';
-import { log } from 'console';
 import { DialogModule } from 'primeng/dialog';
 import { GraphComponent } from '../graph/graph.component';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -35,7 +34,7 @@ export class AssessmentsComponent implements OnInit {
   monthsOld: Date[] = [];
   valuesOld: string[] = [];
   values: string[] = [];
-  sliderValues: number[] = []; // מערך לשמירת הערכים של כל ה-sliders
+  sliderValues: number[] = []; 
   assessmentsList: Assessment[] = []
   AssessmentTypeByStudentList: any[] = []
   @Input() id = 0;
@@ -96,18 +95,8 @@ export class AssessmentsComponent implements OnInit {
       month: month,
       values: values
     };
-    // dialogConfig.width = '800px';
-    // dialogConfig.height = '800px';
     dialogConfig.minWidth = '90%'
     this.dialog.open(DialogComponent, dialogConfig);
   }
 
 }
-
-
-
-
-// }
-      // this.AssessmentTypeByStudentList = this.AssessmentTypeByStudentList.sort((a: string, b: string) => {
-      //   return new Date(a).getTime() - new Date(b).getTime();
-      // });
