@@ -8,6 +8,8 @@
         <div class="description-text"  [style.color]="colors[i]">{{description}}</div>
     </div>
 </div>
+<button mat-button (click)="send()">עדכן</button>
+
 <button (click)="sent()">שמור</button> -->
 
 <div *ngFor="let description of descriptions; let i = index">

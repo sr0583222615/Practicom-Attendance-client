@@ -13,6 +13,7 @@ import { GraphComponent } from '../graph/graph.component';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { lastValueFrom } from 'rxjs';
 
 
 @Component({
@@ -24,7 +25,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class AssessmentsComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  showGraph: boolean = false;
   readonly panelOpenState = signal(false);
   #assesmentService = inject(AssesmentsService);
   #router = inject(Router);
@@ -33,11 +33,14 @@ export class AssessmentsComponent implements OnInit {
   projects: object[] = [];
   descriptions: string[] = [];
   months: Date[] = [];
+  monthsOld: Date[] = [];
+  valuesOld: string[] = [];
   values: string[] = [];
   sliderValues: number[] = []; // מערך לשמירת הערכים של כל ה-sliders
   assessmentsList: Assessment[] = []
   AssessmentTypeByStudentList: any[] = []
   colors: string[] = [];
+  showGraph:boolean=false;
   @Input() id:number=0;
 
   ngOnInit(): void {
@@ -88,13 +91,13 @@ export class AssessmentsComponent implements OnInit {
   }
 
 
-  openDialog(month: Date[], values: string[],i:number): void {
+  openDialog(month: Date[], values: string[], i: number): void {
     debugger
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.descriptions[i],
-      month:month,
-      values:values
+      month: month,
+      values: values
     };
     // dialogConfig.width = '800px';
     // dialogConfig.height = '800px';

@@ -21,7 +21,6 @@ export class GraphComponent implements OnInit {
   isOk: boolean = false;
   isOk2: boolean = false;
 
-
   showGraph() {
     debugger
     const documentStyle = getComputedStyle(document.documentElement);
@@ -29,7 +28,6 @@ export class GraphComponent implements OnInit {
     const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
     console.log(this.month + "month in graph to see the first value");
-    alert(this.month + "month in graph to see the first value");
     console.log(this.values);
     this.data = {
       labels: this.month,
