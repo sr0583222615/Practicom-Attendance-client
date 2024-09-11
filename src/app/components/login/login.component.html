@@ -1,19 +1,18 @@
-<!-- <div class="title">שלום למערכת מנחות פרקטיקום</div> -->
-
-<form class="form">
-    <mat-form-field class="full-width">
-        <mat-label>הכניסי שם משתמש</mat-label>
-        <input  type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
-        <mat-hint></mat-hint>
-        @if (passwordFormControl.hasError('maxLegth') && passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')) {
-        <mat-error>בבקשה הכניסי שם משתמש </mat-error>
-        }
-        @if (passwordFormControl.hasError('required')) {
-          <mat-error>שם משתמש <strong>חובה</strong></mat-error>
-        }
-      </mat-form-field>
-       <button mat-fab extended (click)="login()" >המשך</button>
-  </form>
- 
-
-  
+<div class="container">
+  <div class="shadow-box"> <!-- New div for shadow effect -->
+      <form class="form">
+          <mat-form-field class="full-width">
+              <mat-label>הכניסי שם משתמש</mat-label>
+              <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" class="input-field">
+              <mat-hint></mat-hint>
+              <ng-container *ngIf="passwordFormControl.hasError('maxLength') && passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
+                  <mat-error>בבקשה הכניסי שם משתמש </mat-error>
+              </ng-container>
+              <ng-container *ngIf="passwordFormControl.hasError('required')">
+                  <mat-error>שם משתמש <strong>חובה</strong></mat-error>
+              </ng-container>
+          </mat-form-field>
+          <button mat-fab extended (click)="login()" class="submit-button">המשך</button>
+      </form>
+  </div>
+</div>

@@ -1,11 +1,23 @@
-<div *ngFor="let description of descriptions; let i = index">
+<!-- <div *ngFor="let description of descriptions; let i = index">
     <div class="description-slider-container">
         <button mat-button (click)="getGraph(months,values,i)">גרף</button>
         <mat-slider class="aligned-slider" min="0" max="10" step="1" showTickMarks discrete
             [displayWith]="formatLabel(i)">
             <input matSliderThumb>
         </mat-slider>
-        <div class="description-text">{{description}}</div>
+        <div class="description-text"  [style.color]="colors[i]">{{description}}</div>
     </div>
 </div>
-<button (click)="sent()">שמור</button>
+<button (click)="sent()">שמור</button> -->
+
+<div *ngFor="let description of descriptions; let i = index">
+  <div class="description-slider-container">
+      <button mat-button (click)="getGraph(months, values, i)">גרף</button>
+      <mat-slider class="aligned-slider" min="0" max="10" step="1" showTickMarks discrete
+          [displayWith]="formatLabel(i)">
+          <input matSliderThumb>
+      </mat-slider>
+      <div class="description-text" [style.color]="colors[i]">{{ description }}</div>
+  </div>
+</div>
+<button mat-button (click)="sent()">שמור</button>
