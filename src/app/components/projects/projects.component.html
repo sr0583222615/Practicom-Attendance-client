@@ -1,11 +1,10 @@
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let name of projectsNames">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ name }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-students></app-students>
-    </mat-expansion-panel>
-  </mat-accordion>
-  
+  <mat-expansion-panel *ngFor="let name of projectsNames">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="custom-title">
+        {{ name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-students></app-students>
+  </mat-expansion-panel>
+</mat-accordion>

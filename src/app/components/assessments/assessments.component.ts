@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, inject, signal, ChangeDetectorRef } from '@angular/core';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component,Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AssesmentsService } from '../../services/assesments.service';
 import { MatSliderModule } from '@angular/material/slider';
@@ -22,12 +21,10 @@ import { lastValueFrom } from 'rxjs';
   styleUrl: './assessments.component.css'
 })
 export class AssessmentsComponent implements OnInit {
+
   readonly dialog = inject(MatDialog);
-  readonly panelOpenState = signal(false);
   #assesmentService = inject(AssesmentsService);
-  #router = inject(Router);
   #route = inject(ActivatedRoute);
-  #cdr = inject(ChangeDetectorRef)
   projects: object[] = [];
   descriptions: string[] = [];
   months: Date[] = [];
@@ -37,20 +34,19 @@ export class AssessmentsComponent implements OnInit {
   sliderValues: number[] = []; 
   assessmentsList: Assessment[] = []
   AssessmentTypeByStudentList: any[] = []
+  colors: string[] = [];
   @Input() id = 0;
+
   ngOnInit(): void {
-    this.#route.params.subscribe(id => {
-      if (!isNaN(this.id)) {
-        this.#assesmentService.getAllAssesments().subscribe((response: any) => {
+    this.#route.params.subscribe(x => {
+        this.#assesmentService.getAllAssesmentsType().subscribe((response: any) => {
           if (response.message.result) {
-            this.descriptions = response.message.result.map((d: any) => {
-              return `${d.description.trim()}`;
+            this.colors = response.message.result.map((c: any) => c.color.trim());
+            this.descriptions = response.message.result.map((d: any) => {return `${d.description.trim()}`;
             });
           }
         });
-      }
     });
-
   }
 
   formatLabel(index: number) {
@@ -59,9 +55,9 @@ export class AssessmentsComponent implements OnInit {
       return `${value}`;
     };
   }
+
   send() {
-    debugger;
-    this.assessmentsList = [];
+    // this.assessmentsList = []//לבדוק אם המערך צריך באמת להתאפס 
     for (let i = 0; i < this.sliderValues.length; i++) {
       let assessment: Assessment = new Assessment();
       assessment.assessment_type_id = i + 1;
@@ -88,7 +84,6 @@ export class AssessmentsComponent implements OnInit {
 
 
   openDialog(month: Date[], values: string[], i: number): void {
-    debugger
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.descriptions[i],

@@ -13,8 +13,6 @@ import { StudentsComponent } from '../students/students.component';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-
-  readonly panelOpenState = signal(false);
   #projectsService = inject(ProjectsService)
   #router = inject(Router)
   #route = inject(ActivatedRoute)
@@ -22,17 +20,18 @@ export class ProjectsComponent {
   projectsNames: string[]=[]
 
   ngOnInit(): void {
-    debugger
     this.#route.params.subscribe(id => {
       const guideId = id['guideId'];
-      const a = parseInt(guideId);     
-      if (!isNaN(a)) {
+      const guideIdInt = parseInt(guideId);     
+      if (!isNaN(guideIdInt)) {
         this.#projectsService.getAllProjects(guideId).subscribe((response:any) => {
-          debugger
           if (response.message.result) {
             this.projectsNames = response.message.result.map((student:any) => {
               return `${student.description.trim()}`;
             });
+          }
+          if(this.projectsNames.length==1){
+            this.#router.navigate(['student', { guideId: guideId }] );
           }
         });
       }

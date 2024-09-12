@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, Input, OnInit, SimpleChanges, inject, input } from '@angular/core';
+import {  Component, Inject, Input, OnInit, SimpleChanges, inject, input } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 
 @Component({
@@ -10,7 +10,6 @@ import { ChartModule } from 'primeng/chart';
   styleUrl: './graph.component.css'
 })
 export class GraphComponent implements OnInit {
-  // #cdr = inject(ChangeDetectorRef)
   @Input() month: any[] = []
   @Input() values: any[] = []
   ngOnInit(): void {

@@ -5,20 +5,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class guideService {
+export class userService {
   private reloadguideSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   reloadguide$: Observable<boolean> = this.reloadguideSubject.asObservable();
   #http=inject(HttpClient); 
 
   login(guideID:number) :Observable<any> {
-    debugger
-    let url = 'https://localhost:44392/assessments/login/'+guideID;              
+   const url = `https://localhost:44392/assessments/login/${guideID}`;  
     return this.#http.get<any>(url);
-    
   }
 
-  setReloadguide(){
-    let flag = this.reloadguideSubject.value;
-    this.reloadguideSubject.next(!flag);
-  }
+
 }

@@ -13,13 +13,8 @@ export class ProjectsService {
 
 
   getAllProjects(guideID:number) :Observable<any> {
-    debugger
     let url = 'https://localhost:44392/assessments/getAllProjects/'+guideID;              
     return this.#http.get<any>(url);
   }
 
-  setReloadguide(){
-    let flag = this.reloadprojectSubject.value;
-    this.reloadprojectSubject.next(!flag);
-  }
 }

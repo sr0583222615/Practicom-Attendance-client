@@ -12,14 +12,7 @@ export class StudentsService {
   #http=inject(HttpClient); 
 
   getAllStudents(guideID:number) :Observable<Student[]> {
-    debugger
     let url = 'https://localhost:44392/assessments/getAllStudent/'+guideID;              
     return this.#http.get<Student[]>(url);   
   }
-
-  setReloadstudent(){
-    let flag = this.reloadstudentSubject.value;
-    this.reloadstudentSubject.next(!flag);
-  }
-
 }

@@ -6,9 +6,9 @@ import { AbstractControl, FormControl, FormGroupDirective, FormsModule, NgForm, 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { guideService } from '../../services/guide.service';
 import { catchError, throwError } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import { userService } from '../../services/user.service';
 
 
 @Component({
@@ -19,10 +19,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements ErrorStateMatcher {
-
-  #guideService = inject(guideService)
+  #userService = inject(userService)
   #router = inject(Router)
-  #activatedRoute = inject(ActivatedRoute)
 
   isErrorState(control: AbstractControl<any, any> | null, form: FormGroupDirective | NgForm | null): boolean {
     throw new Error('Method not implemented.');
@@ -35,7 +33,7 @@ export class LoginComponent implements ErrorStateMatcher {
     if (this.passwordFormControl.valid) {
       let pass = this.passwordFormControl.value as string;
       let passInt = parseInt(pass);
-      this.#guideService.login(passInt).pipe(
+      this.#userService.login(passInt).pipe(
         catchError((error) => {
           if (error.status === 400) {
             this.#router.navigateByUrl('');

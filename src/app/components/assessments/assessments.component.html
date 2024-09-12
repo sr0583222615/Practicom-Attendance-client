@@ -5,7 +5,7 @@
             [displayWith]="formatLabel(i)">
             <input matSliderThumb>
         </mat-slider>
-        <div class="description-text">{{description}}</div>
+        <div class="description-text" [style.color]="colors[i]">{{ description }}</div>
     </div>
 </div>
 <button mat-button (click)="send()">עדכן</button>
