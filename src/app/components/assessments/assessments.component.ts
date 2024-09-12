@@ -27,7 +27,7 @@ export class AssessmentsComponent implements OnInit {
   #assesmentService = inject(AssesmentsService);
   #router = inject(Router);
   #route = inject(ActivatedRoute);
-  #cdr = inject(ChangeDetectorRef)
+  // #cdr = inject(ChangeDetectorRef)
   projects: object[] = [];
   descriptions: string[] = [];
   months: Date[] = [];
