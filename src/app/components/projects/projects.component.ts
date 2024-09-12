@@ -20,6 +20,8 @@ export class ProjectsComponent {
   #route = inject(ActivatedRoute)
   projects: object[] = [];
   projectsNames: string[]=[]
+  isOneProject: boolean=false;
+  projectName: string="";
 
   ngOnInit(): void {
     debugger
@@ -30,9 +32,14 @@ export class ProjectsComponent {
         this.#projectsService.getAllProjects(guideId).subscribe((response:any) => {
           debugger
           if (response.message.result) {
-            this.projectsNames = response.message.result.map((student:any) => {
-              return `${student.description.trim()}`;
+            this.projectsNames = response.message.result.map((project:any) => {
+              debugger
+              return `${project.description.trim()}`;
             });
+          }
+          //ה if לא ממוקם במקום טוב, לכן הוא לא עובד
+          if(this.projectsNames.length==1){
+            this.#router.navigate(['student', { guideId: guideId }] );
           }
         });
       }

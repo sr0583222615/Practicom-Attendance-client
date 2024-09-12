@@ -1,12 +1,68 @@
+body {
+  margin: 0; /* Reset default margin */
+  font-family: 'Noto Sans Hebrew', sans-serif; /* Set the nice font for body */
+}
+
+
+.container {
+  /* background-color: #e0f7fa; Very light blue background */
+  display: flex; /* Use flex for centering items */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.shadow-box {
+  background: white; /* Background of the shadow box */
+  padding: 2%; /* Use less padding to fit in smaller height */
+  border-radius: 1rem; /* Use rem for border-radius */
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2); /* Shadow effect using rem */
+  width: 90%; /* Default full width with a max limit */
+  max-width: 25rem; /* Set a max-width suitable for larger screens */
+  margin-top: 0; /* Ensure no extra margin pushes it down */
+}
+
 .form {
-    min-width: 10%;
-    max-width: 20%;
-    margin-top: 20%;
-    margin-left: 40%;
+  display: flex; /* Use flexbox to stack items vertically */
+  flex-direction: column; /* Arrange items vertically */
+  width: 100%; /* Full width of the parent */
+}
+
+.full-width {
+  width: 100%; /* Ensure inputs take full width */
+}
+
+.input-field {
+  width: 100%; /* Ensure input takes full width */
+  margin-bottom: 1rem; /* Space between input and button in rem */
+  font-family: 'Noto Sans Hebrew', sans-serif; /* Use the same font for input fields */
+}
+
+.submit-button {
+  width: 100%; /* Ensure button takes full width */
+  background-color: #005cbb;  /* Darker blue color for button */
+  color: #000; /* Text color for the button */
+  border: none; /* Remove default border */
+  padding: 1rem; /* Padding for the button */
+  border-radius: 0.5rem; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Transition effect for hover */
+  font-family: 'Noto Sans Hebrew', sans-serif; /* Use the same font for button */
+}
+
+/* Change button color on hover */
+.submit-button:hover {
+  background-color: #15229b; /* Even darker shade on hover */
+}
+
+/* Media Queries for additional responsiveness */
+@media (max-width: 768px) {
+  .shadow-box {
+    padding: 4%; /* Reduce padding slightly for smaller screens */
   }
-  
-  .full-width {
-    width: 100%;
-    
+
+  .input-field {
+    margin-bottom: 0.8rem; /* Reduce space between input and button on smaller screens */
   }
-  
+}

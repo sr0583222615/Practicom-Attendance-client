@@ -13,13 +13,13 @@ export class AssesmentsService {
 
   getAllAssesments() :Observable<any[]> {
     debugger
-    let url = 'https://localhost:44392/assessments/getAllAssessment';              
+    let url = 'https://localhost:44392/assessments/getAllAssessments';              
     return this.#http.get<any[]>(url);
   }
 
   addAssessments(assessments:Assessment[]) :Observable<string> {
     debugger
-    let url = 'https://localhost:44392/assessments/addAssessments';              
+    let url = 'https://localhost:44392/assessments/addAssessments';   
     return this.#http.post<string>(url,assessments);
   } 
 
