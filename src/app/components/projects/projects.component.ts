@@ -18,6 +18,8 @@ export class ProjectsComponent {
   #route = inject(ActivatedRoute)
   projects: object[] = [];
   projectsNames: string[]=[]
+  isOneProject: boolean=false;
+  projectName: string="";
 
   ngOnInit(): void {
     this.#route.params.subscribe(id => {
@@ -26,10 +28,15 @@ export class ProjectsComponent {
       if (!isNaN(guideIdInt)) {
         this.#projectsService.getAllProjects(guideId).subscribe((response:any) => {
           if (response.message.result) {
-            this.projectsNames = response.message.result.map((student:any) => {
-              return `${student.description.trim()}`;
+            this.projectsNames = response.message.result.map((project:any) => {
+              debugger
+              return `${project.description.trim()}`;
             });
           }
+<<<<<<< HEAD
+=======
+          //ה if לא ממוקם במקום טוב, לכן הוא לא עובד
+>>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8
           if(this.projectsNames.length==1){
             this.#router.navigate(['student', { guideId: guideId }] );
           }

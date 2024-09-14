@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
     <div class="header">הערכת מנחות - הזדהות</div> 
   <div class="shadow-box"> 
       <form class="form">
@@ -6,11 +7,29 @@
               <mat-label>הכניסי מספר תעודת זהות</mat-label>
               <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" class="input-field">
               <mat-hint></mat-hint>
+=======
+  <div class="shadow-box"> <!-- New div for shadow effect -->
+      <form class="form">
+          <mat-form-field class="full-width">
+              <mat-label>הכניסי שם משתמש</mat-label>
+              <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" class="input-field">
+              <mat-hint></mat-hint>
+              <ng-container *ngIf="passwordFormControl.hasError('maxLength') && passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
+                  <mat-error>בבקשה הכניסי שם משתמש </mat-error>
+              </ng-container>
+              <ng-container *ngIf="passwordFormControl.hasError('required')">
+                  <mat-error>שם משתמש <strong>חובה</strong></mat-error>
+              </ng-container>
+>>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8
           </mat-form-field>
           <button mat-fab extended (click)="login()" class="submit-button">המשך</button>
       </form>
   </div>
+<<<<<<< HEAD
 </div>
  
 
   
+=======
+</div>
+>>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8

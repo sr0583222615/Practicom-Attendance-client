@@ -1,10 +1,9 @@
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let name of names">
+  <mat-expansion-panel *ngFor="let name of names; let i = index">
     <mat-expansion-panel-header>
       <mat-panel-title class="custom-title">
         {{ name }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-assessments [id]="studentId" ></app-assessments>
-  </mat-expansion-panel>
+    <app-assessments *ngIf="studentsId[i] !== undefined" [id]="studentsId[i]"></app-assessments>  </mat-expansion-panel>
 </mat-accordion>
