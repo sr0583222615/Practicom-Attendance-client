@@ -3,25 +3,15 @@ body {
   font-family: 'Noto Sans Hebrew', sans-serif; /* Set the nice font for body */
 }
 
-<<<<<<< HEAD
 .container {
   display: flex; /* Use flex for centering items */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   flex-direction: column; /* Stack items vertically */
-=======
-
-.container {
-  /* background-color: #e0f7fa; Very light blue background */
-  display: flex; /* Use flex for centering items */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
->>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8
   height: 100vh; /* Full height of the viewport */
   overflow: hidden; /* Prevent scrolling */
 }
 
-<<<<<<< HEAD
 .header {
   font-size: 1.5rem; /* Font size for the header */
   font-weight: bold; /* Make the font bold */
@@ -32,8 +22,6 @@ body {
   max-width: 25rem; /* Limit width to match shadow box */
 }
 
-=======
->>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8
 .shadow-box {
   background: white; /* Background of the shadow box */
   padding: 2%; /* Use less padding to fit in smaller height */
