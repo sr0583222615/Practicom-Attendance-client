@@ -33,10 +33,6 @@ export class ProjectsComponent {
               return `${project.description.trim()}`;
             });
           }
-<<<<<<< HEAD
-=======
-          //ה if לא ממוקם במקום טוב, לכן הוא לא עובד
->>>>>>> 0da8e133da933396c106ecd79fd09817605b65f8
           if(this.projectsNames.length==1){
             this.#router.navigate(['student', { guideId: guideId }] );
           }
