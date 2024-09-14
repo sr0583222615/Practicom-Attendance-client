@@ -1,7 +1,9 @@
-<div>
+<div class="dialog-content">
   <h2 mat-dialog-title>{{data.title}}</h2>
+  <mat-dialog-content>
+    <app-graph [values]="data.values" [month]="data.month"></app-graph>
+  </mat-dialog-content>
   <mat-dialog-actions>
+    <button mat-button mat-dialog-close>close</button>
   </mat-dialog-actions>
-  <app-graph [values]="data.values" [month]="data.month"></app-graph>
 </div>
-<button mat-button mat-dialog-close>close</button>

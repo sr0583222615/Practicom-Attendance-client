@@ -20,5 +20,4 @@ import { GraphComponent } from "../graph/graph.component";
 export class DialogComponent {
   readonly dialogRef = inject(MatDialogRef<DialogComponent>);
   data = inject(MAT_DIALOG_DATA);
-
 }

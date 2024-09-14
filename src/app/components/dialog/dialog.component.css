@@ -1,10 +1,11 @@
-button {
-    margin-right: 8px;
-  }
-
-button.mat-button {
-  border-radius: 0;
-  padding: 8px 16px;
+/* לוודא שהכפתור יתפוס את כל הרוחב */
+.full-width-button {
+  width: 100%;
+  box-sizing: border-box; /* כולל פדינג וגבולות בחישוב הרוחב */
 }
- 
 
+/* אפשרות עיצוב נוספת ל- mat-dialog-actions */
+mat-dialog-actions {
+  display: flex;
+  justify-content: center; /* ממרכז את הכפתור בתוך האזור */
+}

@@ -21,8 +21,8 @@ export class AssesmentsService {
     return this.#http.post<string>(url,assessments);
   } 
 
-  getAssessmentTypeByStudent(assessmentType:number,id:number) :Observable<any[]> {
-    let url = `https://localhost:44392/assessments/getAssessmentTypeByStudent?id=${id}&assessmentType=${assessmentType}`;            
+  getAssessmentByAssessmentType(assessmentType:number,id:number) :Observable<any[]> {
+    let url = `https://localhost:44392/assessments/getAssessmentByAssessmentType?id=${id}&assessmentType=${assessmentType}`;            
     return this.#http.get<any[]>(url);
   }
 

@@ -14,6 +14,4 @@ export class userService {
    const url = `https://localhost:44392/assessments/login/${guideID}`;  
     return this.#http.get<any>(url);
   }
-
-
 }

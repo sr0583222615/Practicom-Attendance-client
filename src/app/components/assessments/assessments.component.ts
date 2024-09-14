@@ -1,5 +1,5 @@
-import { Component,Input, OnInit, inject } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AssesmentsService } from '../../services/assesments.service';
 import { MatSliderModule } from '@angular/material/slider';
@@ -11,7 +11,6 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { lastValueFrom } from 'rxjs';
-
 
 @Component({
   selector: 'app-assessments',
@@ -25,13 +24,10 @@ export class AssessmentsComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   #assesmentService = inject(AssesmentsService);
   #route = inject(ActivatedRoute);
-  projects: object[] = [];
   descriptions: string[] = [];
-  months: Date[] = [];
-  monthsOld: Date[] = [];
-  valuesOld: string[] = [];
+  months: string[] = [];
   values: string[] = [];
-  sliderValues: number[] = []; 
+  sliderValues: number[] = [];
   assessmentsList: Assessment[] = []
   AssessmentTypeByStudentList: any[] = []
   colors: string[] = [];
@@ -39,13 +35,14 @@ export class AssessmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.#route.params.subscribe(x => {
-        this.#assesmentService.getAllAssesmentsType().subscribe((response: any) => {
-          if (response.message.result) {
-            this.colors = response.message.result.map((c: any) => c.color.trim());
-            this.descriptions = response.message.result.map((d: any) => {return `${d.description.trim()}`;
-            });
-          }
-        });
+      this.#assesmentService.getAllAssesmentsType().subscribe((response: any) => {
+        if (response.message.result) {
+          this.colors = response.message.result.map((c: any) => c.color.trim());
+          this.descriptions = response.message.result.map((d: any) => {
+            return `${d.description.trim()}`;
+          });
+        }
+      });
     });
   }
 
@@ -57,7 +54,6 @@ export class AssessmentsComponent implements OnInit {
   }
 
   send() {
-    // this.assessmentsList = []//לבדוק אם המערך צריך באמת להתאפס 
     for (let i = 0; i < this.sliderValues.length; i++) {
       let assessment: Assessment = new Assessment();
       assessment.assessment_type_id = i + 1;
@@ -69,11 +65,14 @@ export class AssessmentsComponent implements OnInit {
       alert(x.message.result)
     });
   }
-  async getGraph(month: Date[], values: string[], assessmentType: number) {
+  async getGraph(month: string[], values: string[], assessmentType: number) {
     try {
-      const response: any = await lastValueFrom(this.#assesmentService.getAssessmentTypeByStudent(assessmentType + 1, this.id));
+      const response: any = await lastValueFrom(this.#assesmentService.getAssessmentByAssessmentType(assessmentType + 1, this.id));
       this.AssessmentTypeByStudentList = response.message.result;
-      this.months = this.AssessmentTypeByStudentList.map(item => item.date);
+      this.months = this.AssessmentTypeByStudentList.map(item => {
+        const date = new Date(item.date);
+        return date.toISOString().split('T')[0];
+      });
       this.values = this.AssessmentTypeByStudentList.map(item => item.value);
     }
     catch (error) {
@@ -83,7 +82,7 @@ export class AssessmentsComponent implements OnInit {
   }
 
 
-  openDialog(month: Date[], values: string[], i: number): void {
+  openDialog(month: string[], values: string[], i: number): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
       title: this.descriptions[i],

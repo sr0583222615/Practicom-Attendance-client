@@ -3,15 +3,9 @@
   <div class="shadow-box"> 
       <form class="form">
           <mat-form-field class="full-width">
-              <mat-label>הכניסי שם משתמש</mat-label>
+              <mat-label>הכניסי מספר תעודת זהות</mat-label>
               <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" class="input-field">
               <mat-hint></mat-hint>
-              <ng-container *ngIf="passwordFormControl.hasError('maxLength') && passwordFormControl.hasError('minLength') && !passwordFormControl.hasError('required')">
-                  <mat-error>בבקשה הכניסי שם משתמש </mat-error>
-              </ng-container>
-              <ng-container *ngIf="passwordFormControl.hasError('required')">
-                  <mat-error>שם משתמש <strong>חובה</strong></mat-error>
-              </ng-container>
           </mat-form-field>
           <button mat-fab extended (click)="login()" class="submit-button">המשך</button>
       </form>
