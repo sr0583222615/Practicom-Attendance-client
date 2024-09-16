@@ -11,6 +11,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { lastValueFrom } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'app-assessments',
@@ -59,6 +60,7 @@ export class AssessmentsComponent implements OnInit {
       assessment.assessment_type_id = i + 1;
       assessment.student_id = this.id;
       assessment.value = this.sliderValues[i];
+      console.log(assessment);
       this.assessmentsList[i] = assessment;
     }
     this.#assesmentService.addAssessments(this.assessmentsList).subscribe((x: any) => {
@@ -67,12 +69,24 @@ export class AssessmentsComponent implements OnInit {
   }
   async getGraph(month: string[], values: string[], assessmentType: number) {
     try {
+      debugger;
       const response: any = await lastValueFrom(this.#assesmentService.getAssessmentByAssessmentType(assessmentType + 1, this.id));
       this.AssessmentTypeByStudentList = response.message.result;
+      // this.months = this.AssessmentTypeByStudentList.map(item => {
+      //   const date = new Date(item.date);
+      //   const toISOStringDate=date.toISOString().split('T')[0];
+      //   return date.toISOString().split('T')[0];
+      // });
       this.months = this.AssessmentTypeByStudentList.map(item => {
         const date = new Date(item.date);
-        return date.toISOString().split('T')[0];
+        const localDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+        const day = localDate.getDate().toString().padStart(2, '0');
+        const month = (localDate.getMonth() + 1).toString().padStart(2, '0');
+        const year = localDate.getFullYear();
+        return `${day}-${month}-${year}`;
       });
+      
+      console.log(this.months+"month");
       this.values = this.AssessmentTypeByStudentList.map(item => item.value);
     }
     catch (error) {

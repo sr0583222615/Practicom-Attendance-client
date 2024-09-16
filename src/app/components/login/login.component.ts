@@ -10,17 +10,21 @@ import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { userService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast'; // הוספת הייבוא כאן
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDividerModule, MatIconModule,CommonModule],
+  imports: [FormsModule,ToastModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatButtonModule, MatDividerModule, MatIconModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  providers: [MessageService]
+
 })
 export class LoginComponent implements ErrorStateMatcher {
-
+  #messageService = inject(MessageService)
   #guideService = inject(userService)
   #router = inject(Router)
 
@@ -45,9 +49,10 @@ export class LoginComponent implements ErrorStateMatcher {
       ).subscribe((x) => {
         if (x.message == "משתמש לא רשום") {
           alert("משתמש לא רשום")
+          // this.#messageService.add({severity:'error', summary: 'Error', detail: 'Message Content'});
           this.#router.navigateByUrl('');
         } else if (x.message == "משתמש רשום") {
-          this.#router.navigate(['project', { guideId: passInt }] );
+          this.#router.navigate(['project', { guideId: passInt }]);
         }
       });
     }

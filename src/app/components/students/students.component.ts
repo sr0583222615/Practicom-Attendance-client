@@ -19,28 +19,6 @@ export class StudentsComponent implements OnInit {
   students: object[] = [];
   names: string[] = []
   studentsId:number[]=[];
-
-  // ngOnInit(): void {
-  //   this.#route.params.subscribe(id => {
-  //     const guideId = id['guideId'];
-  //     const a = parseInt(guideId);
-  //     if (!isNaN(a)) {
-  //       this.#studentsService.getAllStudents(guideId).subscribe((response: any) => {
-  //         debugger;
-  //         console.log(response);
-  //         if (response.message.result) {
-  //           this.names = response.message.result.map((student: any) => {
-  //             this.studentsId.push(student.id);
-  //             console.log(student.id +"this.studentId from student")
-  //             return `${student.firstName.trim()} ${student.lastName.trim()}`;
-  //           });
-  //         }
-  //         console.log(this.names);
-  //       });
-  //     }
-  //   });
-  // }
-
   ngOnInit(): void {
     this.#route.params.subscribe(id => {
       const guideId = id['guideId'];

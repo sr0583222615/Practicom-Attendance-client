@@ -1,11 +1,9 @@
-/* לוודא שהכפתור יתפוס את כל הרוחב */
 .full-width-button {
   width: 100%;
-  box-sizing: border-box; /* כולל פדינג וגבולות בחישוב הרוחב */
+  box-sizing: border-box; 
 }
 
-/* אפשרות עיצוב נוספת ל- mat-dialog-actions */
 mat-dialog-actions {
   display: flex;
-  justify-content: center; /* ממרכז את הכפתור בתוך האזור */
+  justify-content: center; 
 }
