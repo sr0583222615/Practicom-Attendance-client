@@ -40,8 +40,8 @@ export class LoginComponent implements ErrorStateMatcher {
       let passInt = parseInt(pass);
       this.#guideService.login(passInt).pipe(
         catchError((error) => {
-          if (error.status === 400) {
-            this.#router.navigateByUrl('');
+          if (error.status === 400 || error.status===0) {
+            this.#router.navigateByUrl('error');
           }
           return throwError(error);
         }
